@@ -1,0 +1,3 @@
+cron:
+  - description: "test dispatch vs target"
+    schedule: every 6 hours
