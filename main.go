@@ -15,7 +15,6 @@ import (
 	"cloud.google.com/go/storage"
 	firebase "firebase.google.com/go"
 	"google.golang.org/api/iterator"
-	"google.golang.org/api/option"
 )
 
 var Cookies string
@@ -27,6 +26,8 @@ var storageClient *storage.Client
 var whiteListedUsers []string
 
 var lastseen map[string]float64
+
+const projectID = "instatracker-2aaaf"
 
 func filterWhiteListed(reelsTrayData map[string]interface{}) []string {
 	var okausers []string
@@ -44,8 +45,8 @@ func filterWhiteListed(reelsTrayData map[string]interface{}) []string {
 
 func initfire() {
 	ctx := context.Background()
-	opt := option.WithCredentialsFile(`D:\projects\instagram\instastories\instatrackercreds.json`)
-	app, err := firebase.NewApp(ctx, nil, opt)
+	conf := &firebase.Config{ProjectID: projectID}
+	app, err := firebase.NewApp(ctx, conf)
 	if err != nil {
 		log.Fatalf("error initializing app: %v\n", err)
 	}
@@ -55,7 +56,7 @@ func initfire() {
 		log.Fatal(err)
 	}
 
-	storageClient, err = storage.NewClient(ctx, opt)
+	storageClient, err = storage.NewClient(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
