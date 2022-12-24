@@ -1,3 +1,4 @@
 cron:
-  - description: "test dispatch vs target"
+  - description: "save insta reels to cloud storage"
+    url: /
     schedule: every 6 hours
