@@ -189,6 +189,10 @@ func uploadFiles(mediaurl, filename, username string) {
 
 }
 
+func startinstastuff() {
+
+}
+
 func main() {
 	log.Println("started")
 
@@ -215,6 +219,7 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "insta reels saver")
+		// os.Exit(0)
 	})
 
 	port := os.Getenv("PORT")
